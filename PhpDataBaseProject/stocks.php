@@ -12,12 +12,16 @@ require_once 'models/stocks.php';
     $name = htmlspecialchars(filter_input(INPUT_POST, "name"));
     $current_price = filter_input(INPUT_POST, "current_price", FILTER_VALIDATE_FLOAT); //decimal place
     
-    if ( $action == "insert" && $symbol != "" && $name != "" && $current_price != 0){
-        insert_stock($symbol, $name, $current_price);
-        header("Location: stocks.php");       
-    } else if ($action == "update" && $symbol != "" && $name != "" && $current_price != 0) {
-        update_stock($symbol, $name, $current_price);
-        header("Location: stocks.php"); 
+    if ( $action == "insert_or_update" && $symbol != "" && $name != "" && $current_price != 0){
+        $insert_or_update = filter_input(INPUT_POST, 'insert_or_update');
+        
+        if ( $insert_or_update == 'insert'){
+            insert_stock($symbol, $name, $current_price);
+        } else if ( $insert_or_update == 'update') {
+            update_stock($symbol, $name, $current_price);
+        }
+       
+        header("Location: stocks.php");        
     } else if ($action == "delete" && $symbol != "" ) {
         delete_stock($symbol); 
         header("Location: stocks.php"); 

@@ -29,7 +29,7 @@
             
         </table>
         </br>
-        <h2>Add STOCK</h2>
+        <h2>Add or Update STOCK</h2>
         <form action="stocks.php" method="post">
             <label>Symbol: </label>
             <input type="text" name="symbol"/><br><!-- comment -->
@@ -37,28 +37,18 @@
             <input type="text" name="name"/><br><!-- comment -->
             <label>Current Price: </label>
             <input type="text" name="current_price"/><br><!-- comment -->
-            <input type="hidden" name='action' value='insert'/>
+            <input type="hidden" name='action' value='insert_or_update'/>
+            <input type="radio" name="insert_or_update" value="insert" checked>Add Stock</br>
+            <input type="radio" name="insert_or_update" value="update" >Update Stock</br>
             <lable>&nbsp;</lable>
-            <input type="submit" value="Add Stock"/>
+            <input type="submit" value="Submit Stock"/>
         </form>
-        </br>
-        <h2>Update STOCK</h2>
-        <form action="stocks.php" method="post">
-            <label>Symbol: </label>
-            <input type="text" name="symbol"/><br><!-- comment -->
-            <label>Name: </label>
-            <input type="text" name="name"/><br><!-- comment -->
-            <label>Current Price: </label>
-            <input type="text" name="current_price"/><br><!-- comment -->
-            <input type="hidden" name='action' value='update'/>
-            <lable>&nbsp;</lable>
-            <input type="submit" value="Update Stock"/>
-        </form>
+        
         </br>
         <h2>Delete STOCK</h2>
         <form action="stocks.php" method="post">
             <label>Symbol: </label>
-            <input type="text" name="symbol"/><br><!-- comment -->
+            <?php include("stockSymbolDropDown.php"); ?>
             <input type="hidden" name='action' value='delete'/>
             <lable>&nbsp;</lable>
             <input type="submit" value="Delete Stock"/>
